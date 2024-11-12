@@ -201,10 +201,10 @@ export default function AboutUs() {
                   What makes CodeCraft different?
                 </AccordionTrigger>
                 <AccordionContent className="text-purple-100">
-                  We combine cutting-edge technology with a community-driven
+                  {`We combine cutting-edge technology with a community-driven
                   approach, creating a unique learning environment that adapts
                   to each individual's needs while fostering collaboration and
-                  growth.
+                  growth.`}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2" className="border-purple-700/50">
@@ -212,10 +212,10 @@ export default function AboutUs() {
                   How can I join the community?
                 </AccordionTrigger>
                 <AccordionContent className="text-purple-100">
-                  Simply sign up for a free account to get started. You'll
+                  {`Simply sign up for a free account to get started. You'll
                   immediately gain access to our community forums, basic
                   learning resources, and the ability to connect with other
-                  members.
+                  members.`}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3" className="border-purple-700/50">
