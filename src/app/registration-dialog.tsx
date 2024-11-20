@@ -14,9 +14,56 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+
+type FormData = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+  termsAccepted: boolean
+}
 
 export default function RegistrationDialog() {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>()
+  const [error, setError] = React.useState<string>('')
   const [open, setOpen] = React.useState(false)
+  const router = useRouter()
+
+  const onSubmit = async (data: FormData) => {
+    setError('')
+
+    if (!data.termsAccepted) {
+      setError('You must accept the terms and conditions')
+      return
+    }
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password,
+        }),
+      })
+
+      if (response.ok) {
+        setOpen(false)
+        reset()
+        router.push('/dashboard')
+      } else {
+        const responseData = await response.json()
+        setError(responseData.message || 'An error occurred during registration')
+      }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      setError('An error occurred during registration')
+    }
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -30,22 +77,28 @@ export default function RegistrationDialog() {
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold">Registration</DialogTitle>
             </DialogHeader>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4 pt-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 pt-4">
               <div className="space-y-2">
                 <Label htmlFor="firstname">Firstname</Label>
                 <Input
-                  id="firstname"
+                  id="firstName"
                   placeholder="Enter your first name"
                   className="border-gray-200"
+                  {...register("firstName", { required: "First name is required" })}
+                aria-invalid={errors.firstName ? "true" : "false"}
                 />
+                {errors.firstName && <p className="text-sm text-destructive">{errors.firstName.message}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="lastname">Last Name</Label>
                 <Input
-                  id="lastname"
+                  id="lastName"
                   placeholder="Enter your last name"
                   className="border-gray-200"
+                  {...register("lastName", { required: "Last name is required" })}
+                aria-invalid={errors.lastName ? "true" : "false"}
                 />
+                {errors.lastName && <p className="text-sm text-destructive">{errors.lastName.message}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
@@ -54,7 +107,16 @@ export default function RegistrationDialog() {
                   type="email"
                   placeholder="Enter your email"
                   className="border-gray-200"
+                  {...register("email", { 
+                    required: "Email is required",
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: "Invalid email address",
+                    }
+                  })}
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
+                {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
@@ -63,16 +125,28 @@ export default function RegistrationDialog() {
                   type="password"
                   placeholder="Create a password"
                   className="border-gray-200"
+                  {...register("password", { 
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    }
+                  })}
+                  aria-invalid={errors.password ? "true" : "false"}
                 />
+                {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
               </div>
               <div className="flex items-center space-x-2 pt-2">
-                <Checkbox id="terms" />
+                <Checkbox 
+                id="termsAccepted"
+                {...register("termsAccepted")}/>
                 <label
                   htmlFor="terms"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   I agree to the terms & conditions
                 </label>
+                {error && <p className="text-sm text-destructive">{error}</p>}
               </div>
               <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white">
                 Register
