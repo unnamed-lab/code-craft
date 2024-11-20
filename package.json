@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:email": "npx tsx -r dotenv/config test/test-email.ts",
-    "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+    "vercel-build": "prisma generate && prisma db push && next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
