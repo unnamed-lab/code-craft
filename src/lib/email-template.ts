@@ -2,7 +2,6 @@ import QRCode from 'qrcode';
 
 export async function generateTicketEmailHTML(user: { firstName: string; lastName: string; email: string }, ticketId: string) {
     const qrCodeDataURL = await QRCode.toDataURL(ticketId);
-    
     console.info(qrCodeDataURL)
 
   return `

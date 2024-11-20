@@ -8,16 +8,16 @@ async function testEmail() {
 
   const htmlEmail = await generateTicketEmailHTML(
     {
-      firstName: "Unnamed",
-      lastName: "Codes",
-      email: "adebayo.anuoluwa002@gmail.com",
+      firstName: "Chinaza",
+      lastName: "Ojimadu",
+      email: "chisamantha11@gmail.com",
     },
     ticketId
   );
   try {
     const result = await sendEmail({
-      to: "adebayo.anuoluwa002@gmail.com",
-      subject: "Test Email",
+      to: "chisamantha11@gmail.com",
+      subject: "Thank you for registering for the Code Craft Conference 2024",
       text: htmlEmail,
       html: htmlEmail,
     });
