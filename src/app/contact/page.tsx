@@ -147,11 +147,10 @@ export default function ContactPage() {
         {/* Map Section */}
         <section className="container mx-auto px-4 py-20">
           <h2 className="text-2xl font-bold text-white mb-6">Find Us</h2>
-          <div className="relative h-[400px] rounded-lg overflow-hidden">
+          <div className="relative h-[400px] w-full rounded-lg overflow-hidden">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15888.636947508134!2d6.9861481!3d5.3926901!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10425f066c658699%3A0xbc7453a96a27c8f5!2sFederal%20University%20of%20Technology%20-%20Owerri!5e0!3m2!1sen!2sch!4v1733105844117!5m2!1sen!2sch"
-              width="600"
-              height="450"
+              className="w-full h-full"
               style={{ border: 0 }}
               allowFullScreen={undefined}
               loading="lazy"

@@ -54,7 +54,7 @@ export default function Dashboard() {
     return <div className="flex justify-center items-center h-screen text-red-500">{error}</div>
   }
 
-  if (!session || !session.user?.isAdmin) {
+  if (!session || !session.user) {
     return (
       <div className="text-center min-h-screen flex flex-col items-center gap-5 justify-center p-4">
         You are not authorized to access this page
