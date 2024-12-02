@@ -20,10 +20,10 @@ import Sponsor1 from "@/assets/image/logo_1.png";
 import Sponsor2 from "@/assets/image/logo_2.png";
 import Sponsor3 from "@/assets/image/logo_3.png";
 import RegistrationDialog from "./registration-dialog";
-import AnuImage from "@/assets/image/anu.jpg"
-import PraiseImage from "@/assets/image/praise.jpg"
-import SamImage from "@/assets/image/samantha.jpg"
-import CeeJayImage from "@/assets/image/ceejay.jpg"
+import AnuImage from "@/assets/image/anu.jpg";
+import PraiseImage from "@/assets/image/praise.jpg";
+import SamImage from "@/assets/image/samantha.jpg";
+import CeeJayImage from "@/assets/image/ceejay.jpg";
 
 export default function Component() {
   const speakers = [
@@ -31,6 +31,7 @@ export default function Component() {
       name: "Adebayo S. Anuoluwa",
       title: "Full stack Engineer",
       image: AnuImage,
+      desc: "With expertise in both Front-End and Back-End Development, Adebayo Anuoluwa bridges the gap between design and functionality. His ability to create seamless, user-friendly platforms makes him a driving force in modern web development.",
       social: {
         twitter: "https://twitter.com/unnamedcodes",
         github: "https://github.com/unnamed-lab",
@@ -41,6 +42,7 @@ export default function Component() {
       name: "Adibe C. Praise",
       title: "Product Designer",
       image: PraiseImage,
+      desc: "A true artist in the digital realm, Adibe Praise specializes in crafting intuitive User Interfaces (UI). His designs focus on enhancing user experiences through visually appealing and highly functional layouts that captivate and engage.",
       social: {
         twitter: "https://twitter.com/unnamedcodes",
         github: "https://github.com/unnamed-lab",
@@ -51,15 +53,18 @@ export default function Component() {
       name: "Ojimadu B. Chinaza",
       title: "UI/UX Designer & Prioect Manager",
       image: SamImage,
+      desc: "Ojimadu Chinaza is at the intersection of creativity and strategy. As both a UI and UX Designer/Researcher, she ensures that every project is not only visually compelling but also deeply rooted in user needs and preferences.",
       social: {
         twitter: "https://twitter.com/unnamedcodes",
         github: "https://github.com/unnamed-lab",
         linkedin: "https://linkedin.com/in/mradebayo2018",
       },
-    },{
+    },
+    {
       name: "Okereafor O. Chijioke",
       title: "Frontend Developer",
       image: CeeJayImage,
+      desc: "Okereafor Osinachi excels in translating ideas into functional, responsive, and aesthetically pleasing websites. His mastery of Front-End Development ensures a flawless user experience at every interaction.",
       social: {
         twitter: "https://twitter.com/unnamedcodes",
         github: "https://github.com/unnamed-lab",
@@ -131,11 +136,12 @@ export default function Component() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
             Featured Speakers
           </h2>
+          <p className="text-purple-100 md:w-9/12 mx-auto text-lg text-center">At the core of every groundbreaking idea is a team of visionary thinkers and creators. Our speakers for this tech-empowering innovation project represent a synergy of talent, creativity, and expertise. Each one is a trailblazer in their respective field, united by a shared mission to empower and inspire the next generation of tech enthusiasts.</p>
           <Carousel
-            className="max-w-4xl mx-auto"
+            className="max-w-4xl mt-10 mx-auto"
             plugins={[
               Autoplay({
-                delay: 2000,
+                delay: 5000,
               }),
             ]}
           >
@@ -144,19 +150,20 @@ export default function Component() {
                 <CarouselItem key={index}>
                   <div className="bg-purple-900/30 backdrop-blur-sm rounded-lg p-8">
                     <div className="flex flex-col md:flex-row items-center gap-8">
-                      <div className="relative w-48 h-48">
+                      <div className="relative aspect-square w-48 md:basis-1/3">
                         <Image
                           src={speaker.image}
                           alt={speaker.name}
                           fill
-                          className="object-cover rounded-full"
+                          className="object-cover rounded-lg"
                         />
                       </div>
-                      <div className="text-center md:text-left">
+                      <div className="text-center md:text-left  md:basis-2/3">
                         <h3 className="text-2xl font-bold text-white mb-2">
                           {speaker.name}
                         </h3>
                         <p className="text-purple-200 mb-4">{speaker.title}</p>
+                        <p className="text-purple-100 mb-4 text-sm md:text-base">{speaker.desc}</p>
                         <div className="flex justify-center md:justify-start space-x-4">
                           <Link
                             href={speaker.social.twitter}
