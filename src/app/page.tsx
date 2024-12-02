@@ -136,7 +136,14 @@ export default function Component() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
             Featured Speakers
           </h2>
-          <p className="text-purple-100 md:w-9/12 mx-auto text-lg text-center">At the core of every groundbreaking idea is a team of visionary thinkers and creators. Our speakers for this tech-empowering innovation project represent a synergy of talent, creativity, and expertise. Each one is a trailblazer in their respective field, united by a shared mission to empower and inspire the next generation of tech enthusiasts.</p>
+          <p className="text-purple-100 md:w-9/12 mx-auto text-base md:text-lg text-center">
+            At the core of every groundbreaking idea is a team of visionary
+            thinkers and creators. Our speakers for this tech-empowering
+            innovation project represent a synergy of talent, creativity, and
+            expertise. Each one is a trailblazer in their respective field,
+            united by a shared mission to empower and inspire the next
+            generation of tech enthusiasts.
+          </p>
           <Carousel
             className="max-w-4xl mt-10 mx-auto"
             plugins={[
@@ -163,7 +170,9 @@ export default function Component() {
                           {speaker.name}
                         </h3>
                         <p className="text-purple-200 mb-4">{speaker.title}</p>
-                        <p className="text-purple-100 mb-4 text-sm md:text-base">{speaker.desc}</p>
+                        <p className="text-purple-100 mb-4 text-sm md:text-base">
+                          {speaker.desc}
+                        </p>
                         <div className="flex justify-center md:justify-start space-x-4">
                           <Link
                             href={speaker.social.twitter}
