@@ -7,9 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Send } from "lucide-react";
 import { Footer, Navbar } from "@/components/navigation";
-import { Skeleton } from "@/components/ui/skeleton";
 import HeroImage from "@/assets/image/about_banner.png";
-
 
 export default function ContactPage() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -150,13 +148,15 @@ export default function ContactPage() {
         <section className="container mx-auto px-4 py-20">
           <h2 className="text-2xl font-bold text-white mb-6">Find Us</h2>
           <div className="relative h-[400px] rounded-lg overflow-hidden">
-            {/* <Image
-              src="/placeholder.svg?height=800&width=1200"
-              alt="Map placeholder"
-              fill
-              className="object-cover"
-            /> */}
-            <Skeleton className="w-full h-[400px] bg-white/30" />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15888.636947508134!2d6.9861481!3d5.3926901!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10425f066c658699%3A0xbc7453a96a27c8f5!2sFederal%20University%20of%20Technology%20-%20Owerri!5e0!3m2!1sen!2sch!4v1733105844117!5m2!1sen!2sch"
+              width="600"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen={undefined}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </section>
 
