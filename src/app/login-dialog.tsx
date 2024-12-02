@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -21,7 +21,7 @@ type FormData = {
   password: string;
 };
 
-export default function LoginDialog() {
+export default function LoginDialog({ props }: { props: ButtonProps }) {
   const {
     register,
     handleSubmit,
@@ -58,7 +58,7 @@ export default function LoginDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Login</Button>
+              <Button {...props}>{ props.title }</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[850px] p-0 gap-0">
         <div className="grid sm:grid-cols-[1fr,350px]">

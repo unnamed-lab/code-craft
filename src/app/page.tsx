@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 // import { Countdown } from "./countdown"
 import {
@@ -20,42 +19,56 @@ import { CountdownTimer } from "./countdown-timer";
 import Sponsor1 from "@/assets/image/logo_1.png";
 import Sponsor2 from "@/assets/image/logo_2.png";
 import Sponsor3 from "@/assets/image/logo_3.png";
+import RegistrationDialog from "./registration-dialog";
+import AnuImage from "@/assets/image/anu.jpg"
+import PraiseImage from "@/assets/image/praise.jpg"
+import SamImage from "@/assets/image/samantha.jpg"
+import CeeJayImage from "@/assets/image/ceejay.jpg"
 
 export default function Component() {
   const speakers = [
     {
-      name: "Dr. Sarah Chen",
-      title: "AI Research Director",
-      image: "/placeholder.svg?height=400&width=400",
+      name: "Adebayo S. Anuoluwa",
+      title: "Full stack Engineer",
+      image: AnuImage,
       social: {
-        twitter: "https://twitter.com/drsarahchen",
-        github: "https://github.com/drsarahchen",
-        linkedin: "https://linkedin.com/in/drsarahchen",
+        twitter: "https://twitter.com/unnamedcodes",
+        github: "https://github.com/unnamed-lab",
+        linkedin: "https://linkedin.com/in/mradebayo2018",
       },
     },
     {
-      name: "Prof. Alex Kumar",
-      title: "Quantum Computing Expert",
-      image: "/placeholder.svg?height=400&width=400",
+      name: "Adibe C. Praise",
+      title: "Product Designer",
+      image: PraiseImage,
       social: {
-        twitter: "https://twitter.com/alexkumar",
-        github: "https://github.com/alexkumar",
-        linkedin: "https://linkedin.com/in/alexkumar",
+        twitter: "https://twitter.com/unnamedcodes",
+        github: "https://github.com/unnamed-lab",
+        linkedin: "https://linkedin.com/in/mradebayo2018",
       },
     },
     {
-      name: "Dr. Maria Rodriguez",
-      title: "VR/AR Innovation Lead",
-      image: "/placeholder.svg?height=400&width=400",
+      name: "Ojimadu B. Chinaza",
+      title: "UI/UX Designer & Prioect Manager",
+      image: SamImage,
       social: {
-        twitter: "https://twitter.com/mariarodriguez",
-        github: "https://github.com/mariarodriguez",
-        linkedin: "https://linkedin.com/in/mariarodriguez",
+        twitter: "https://twitter.com/unnamedcodes",
+        github: "https://github.com/unnamed-lab",
+        linkedin: "https://linkedin.com/in/mradebayo2018",
+      },
+    },{
+      name: "Okereafor O. Chijioke",
+      title: "Frontend Developer",
+      image: CeeJayImage,
+      social: {
+        twitter: "https://twitter.com/unnamedcodes",
+        github: "https://github.com/unnamed-lab",
+        linkedin: "https://linkedin.com/in/mradebayo2018",
       },
     },
   ];
   return (
-    <div className="min-h-screen bg-[url('/placeholder.svg?height=2000&width=2000')] bg-cover bg-center">
+    <div className="min-h-screen max-w-full overflow-hidden bg-[url('/placeholder.svg?height=2000&width=2000')] bg-cover bg-center">
       <div className="min-h-screen bg-gradient-to-br from-background/90 via-background/90 to-indigo-900/90 flex flex-col items-center">
         {/* Blur Effects */}
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -84,12 +97,14 @@ export default function Component() {
                 ways and come up with new ideas. When we encourage innovation,
                 we can do great things and help others.
               </p>
-              <Button
-                variant={"outline"}
-                className="border-purple-600 py-6 hover:bg-purple-700 text-lg text-white md:w-[200px]"
-              >
-                Register for free
-              </Button>
+              <RegistrationDialog
+                props={{
+                  variant: "outline",
+                  className:
+                    "border-purple-600 py-6 hover:bg-purple-700 text-lg text-white md:w-[200px]",
+                  title: "Register for free",
+                }}
+              />
             </div>
             <div className="relative overflow-hidden w-fit h-[300px] lg:h-[500px] items-center justify-center">
               <Image
