@@ -1,18 +1,15 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RegistrationDialog from "@/app/registration-dialog";
 import LoginDialog from "@/app/login-dialog";
 import { AlignRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   return (
@@ -43,7 +40,10 @@ export default function Navbar() {
           </SheetTrigger>
         </div>
       </nav>
-      <SheetContent side={"top"} className="max-w-[100vw] md:hidden flex flex-col gap-7">
+      <SheetContent
+        side={"top"}
+        className="max-w-[100vw] md:hidden flex flex-col gap-7"
+      >
         <div className="flex flex-col text-center gap-5 font-semibold text-lg md:hidden items-center">
           <Link
             href="/"
@@ -71,33 +71,53 @@ export default function Navbar() {
 }
 
 function ActionButton({ type = "mobile" }: { type?: "desktop" | "mobile" }) {
+  const { data: session } = useSession();
+  const router = useRouter()
+
+  if (!session || !session.user) {
+    return (
+      <div
+        className={cn(
+          "items-center",
+          type === "mobile"
+            ? "md:hidden flex flex-col gap-6"
+            : "hidden md:flex space-x-4"
+        )}
+      >
+        <RegistrationDialog
+          props={{
+            variant: "secondary",
+            className: cn(
+              "bg-purple-700 text-white hover:bg-purple-600",
+              type === "mobile" ? "w-28" : ""
+            ),
+            title: "Get Started",
+          }}
+        />
+        <LoginDialog
+          props={{
+            variant: "outline",
+            className: cn(
+              "text-white border-purple-700/50 hover:bg-white hover:text-purple-900",
+              type === "mobile" ? "w-28" : ""
+            ),
+            title: "Login",
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div
+    <Button
+      onClick={() => router.push("/dashboard/ticket")}
+      variant={"secondary"}
       className={cn(
-        "items-center",
-        type === "mobile" ? "md:hidden flex flex-col gap-6" : "hidden md:flex space-x-4"
+        "bg-purple-700 text-white hover:bg-purple-600",
+        type === "mobile" ? "w-28" : ""
       )}
     >
-      <RegistrationDialog
-        props={{
-          variant: "secondary",
-          className: cn(
-            "bg-purple-700 text-white hover:bg-purple-600",
-            type === "mobile" ? "w-28" : ""
-          ),
-          title: "Get Started",
-        }}
-      />
-      <LoginDialog
-        props={{
-          variant: "outline",
-          className: cn(
-            "text-white border-purple-700/50 hover:bg-white hover:text-purple-900",
-            type === "mobile" ? "w-28" : ""
-          ),
-          title: "Login",
-        }}
-      />
-    </div>
+      View Ticket
+    </Button>
   );
 }

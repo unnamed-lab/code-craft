@@ -172,8 +172,8 @@ export default function RegistrationDialog({ props }: { props: ButtonProps }) {
                 >
                   I agree to the terms & conditions
                 </label>
-                {error && <p className="text-sm text-destructive">{error}</p>}
               </div>
+              {error && <p className="text-sm text-destructive">{error}</p>}
               <Button
                 type="submit"
                 className="w-full bg-purple-600 hover:bg-purple-700 text-white"
